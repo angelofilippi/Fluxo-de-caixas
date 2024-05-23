@@ -1,28 +1,34 @@
 programa {
-  cadeia descricao[5]
-  real data[5], hora[5], valorNeg[5]
-  inteiro contador = 0
+  cadeia descricao[2]
+  real data[2], hora[2], valorNeg[2]
+  inteiro contador = 1, contadorReceitas = 0
+  logico armazena[2]
 
   funcao inicio() {
     adiocinarDespesas()
-    listarFluxo()
+    listarFluxoDespesas()
   }
 
   funcao adiocinarDespesas(){
-    para(inteiro i = 0; i < 5; i++){
+    para(inteiro i = 0; i < 2; i++){
       escreva("Adicione uma descrição à sua despesa: ")
-      leia(descricao[i])
+      leia(descricao[contadorReceitas])
 
       escreva("Qual a data? (Digite apenas o dia): ")
-      leia(data[i])
+      leia(data[contadorReceitas])
 
       escreva("Qual a hora? ")
-      leia(hora[i]) 
+      leia(hora[contadorReceitas]) 
 
       escreva("Qual o valor? (negativo): ")
-      leia(valorNeg[i])
+      leia(valorNeg[contadorReceitas])
 
-      escreva("\n\nReceita ", contador++, "\n")
+      armazena[contadorReceitas] = verdadeiro
+      contadorReceitas++
+
+      escreva("\n\nReceita ", contador++, ":\n")
+      escreva(descricao[i], "\n")
+
       se(data[i] <= 31){
         escreva("Data: ", data[i],"\n")
       }senao{
@@ -40,15 +46,20 @@ programa {
       }senao{
         escreva("Valor inválido!\n\n")
       }
+
+      
     }
   }
 
-  funcao listarFluxo(){
-    para(inteiro i = 0; i < 1; i++){
-      escreva(descricao[i])
-      escreva(data[i])
-      escreva(hora[i])
-      escreva(valorNeg[i])
+  funcao listarFluxoDespesas(){
+    escreva("Aqui está o seu fluxo de despesas:\n\n")
+
+    para(inteiro i = 0; i < contadorReceitas; i++){
+      escreva("Receita ", i, ":\n")
+      escreva("Descrição da despesa: ", descricao[i], "\n")
+      escreva("Data: ", data[i], "\n")
+      escreva("Hora: ", hora[i], "\n")
+      escreva("Valor: ", valorNeg[i], "\n\n")
     }
   }
 }
