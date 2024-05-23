@@ -8,31 +8,31 @@ programa {
   funcao inicio() {
     inteiro menu
     enquanto(menu != 5) {
-      escreva("\nBem vindo\n\nAqui você ira registrar despesas, receita, listar o fluxo de caixa ou listar o saldo atual\n\nPara começar selecione a opção que atende ao seu objetivo:\n[1] - Adicionar receita\n[2] - Adicionar despesa\n[3] - Listar fluxo de caixa\n[4] - Listar saldo atual\n[5] - Sair do menu\n\n")
+      escreva("\nBem vindo\n\nAqui vocï¿½ ira registrar despesas, receita, listar o fluxo de caixa ou listar o saldo atual\n\nPara comeï¿½ar selecione a opï¿½ï¿½o que atende ao seu objetivo:\n[1] - Adicionar receita\n[2] - Adicionar despesa\n[3] - Listar fluxo de caixa\n[4] - Listar saldo atual\n[5] - Sair do menu\n\n")
       leia(menu)
 
       escolha(menu) {
         caso 1:
           adicionareceita()
-        pare
+          pare
 
         caso 2:
           adicionarDespesas()
-        pare
+          pare
 
         caso 3:
-          listarfluxodecaixa()
-        pare
+          listarFluxoDespesas()
+          pare
 
         caso 4:
           listarsaldoatual()
-        pare
+          pare
       }
     }  
   }
   funcao adicionareceita() {
     se(receitas < 5) {
-      escreva("\nInforme a descrição:\n")
+      escreva("\nInforme a descriï¿½ï¿½o:\n")
       leia(descricoes[receitas])
       escreva("\nInforme a data e hora: (exemplo: 13:10)\n")
       leia(dataehora[receitas])
@@ -45,6 +45,60 @@ programa {
   }
   funcao listarsaldoatual() {
     saldo = valorNeg - valores
-    escreva("\nSeu saldo é de: ", saldo, "\n\n")
+    escreva("\nSeu saldo ï¿½ de: ", saldo, "\n\n")
+  }
+
+  funcao adicionarDespesas(){
+    para(inteiro i = 0; i < 2; i++){
+      escreva("Adicione uma descriï¿½ï¿½o ï¿½ sua despesa: ")
+      leia(descricao[contadorReceitas])
+
+      escreva("Qual a data? (Digite apenas o dia): ")
+      leia(data[contadorReceitas])
+
+      escreva("Qual a hora? ")
+      leia(hora[contadorReceitas]) 
+
+      escreva("Qual o valor? (negativo): ")
+      leia(valorNeg[contadorReceitas])
+
+      armazena[contadorReceitas] = verdadeiro
+      contadorReceitas++
+
+      escreva("\n\nReceita ", contador++, ":\n")
+      escreva(descricao[i], "\n")
+
+      se(data[i] <= 31){
+        escreva("Data: ", data[i],"\n")
+      }senao{
+        escreva("Data invï¿½lida!\n")
+      }
+
+      se(hora[i] <= 2359){
+        escreva("Hora: ", hora[i], "\n")
+      }senao{
+        escreva("Hora invï¿½lida!\n")
+      }
+
+      se(valorNeg[i] < 0){
+        escreva("Valor: ", valorNeg[i], "\n\n")
+      }senao{
+        escreva("Valor invï¿½lido!\n\n")
+      }
+
+      
+    }
+  }
+
+  funcao listarFluxoDespesas(){
+    escreva("Aqui estï¿½ o seu fluxo de despesas:\n\n")
+
+    para(inteiro i = 0; i < contadorReceitas; i++){
+      escreva("Receita ", i, ":\n")
+      escreva("Descriï¿½ï¿½o da despesa: ", descricao[i], "\n")
+      escreva("Data: ", data[i], "\n")
+      escreva("Hora: ", hora[i], "\n")
+      escreva("Valor: ", valorNeg[i], "\n\n")
+    }
   }
 }
